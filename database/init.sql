@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users, icebreakers, answers;
+DROP TABLE IF EXISTS users, questions, answers;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -9,15 +9,16 @@ CREATE TABLE users(
     token TEXT
 );
 
-CREATE TABLE icebreakers(
+CREATE TABLE questions(
     id SERIAL PRIMARY KEY,
+    -- user_id INTEGER REFERENCES users(id),
     question TEXT
 );
 
 CREATE TABLE answers(
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
-    question_id INTEGER REFERENCES icebreakers(id),
+    question_id INTEGER REFERENCES questions(id),
     answers TEXT
 );
 
@@ -29,7 +30,7 @@ VALUES
     ('Kat', '$2a$10$det9UYQkW9avEapZQHEti.hcEYC6s4t0YzpXW1C949xMXxQpi.RC2'),
     ('Roger', '$2a$10$Ii5o1InMg1gy4k9ylTTfiOyzDfOzKJ2n.6NuuxdgrPmx088X0DXna');
 
-INSERT INTO icebreakers
+INSERT INTO questions
     (question)
 VALUES
     ('What book would you add to the school curiculum?');

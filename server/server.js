@@ -32,5 +32,6 @@ server.delete("/answers/:id", answers.deleteAnswer);
 //Routes for users
 server.post("/users", users.createUser);
 server.post("/login", users.login);
+server.get("/users", users.getAllUsers);
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

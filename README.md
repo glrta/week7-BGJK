@@ -45,7 +45,7 @@ No tests as of Thursday 5pm
 ## API functions
 
 ### Users
-- Method `POST` `/users`: allow user to sign up 
+- Method `POST` `/users`: allows user to sign up 
 - Method `POST` `/login`: allows user to login and creates token
 - Method `GET` `/users`: lists all users
 
@@ -88,7 +88,7 @@ No tests as of Thursday 5pm
 ---
 
 ## What we struggled with
-- Uderstanding the concept of a REST API (project without a client side)
+- Understanding the concept of a REST API (project without a client side)
 - Deploy database to Heroku
 - Time to write tests
 

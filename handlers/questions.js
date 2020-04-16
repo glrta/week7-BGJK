@@ -43,7 +43,8 @@ function updateQuestion(req, res, next) {
   model
   .getUserIdByQuestionId(questionId)
   .then(userIdArr => {
-    if(userIdArr[0].id !== userId){
+    console.log(userIdArr)
+    if(userIdArr[0].user_id !== userId){
       const error = new Error('Unauthorized!')
       error.status = 401;
       next(error)

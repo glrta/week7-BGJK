@@ -61,13 +61,11 @@ function updateQuestion(req, res, next) {
 
 function deleteQuestion(req, res, next){
     const questionId = req.params.id;
-    console.log(req.user)
     const userId = req.user.id;
 
   model
   .getUserIdByQuestionId(questionId)
   .then(userIdArr => {
-    console.log(userIdArr)
     if(userIdArr[0].user_id !== userId){
       const error = new Error('Unauthorized!')
       error.status = 401;

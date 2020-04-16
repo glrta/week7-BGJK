@@ -61,12 +61,26 @@ function updateQuestion(req, res, next) {
 
 function deleteQuestion(req, res, next){
     const questionId = req.params.id;
+    console.log(req.user)
+    const userId = req.user.id;
+
+  model
+  .getUserIdByQuestionId(questionId)
+  .then(userIdArr => {
+    console.log(userIdArr)
+    if(userIdArr[0].user_id !== userId){
+      const error = new Error('Unauthorized!')
+      error.status = 401;
+      next(error)
+    } else {
     model
       .del(questionId)
       .then(() => {
           res.status(204).send();
       })
       .catch(next);
+    }
+  })
 }
 
 module.exports = { getAllQuestions, getQuestion, postNewQuestion, updateQuestion, deleteQuestion }

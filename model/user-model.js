@@ -13,6 +13,7 @@ function addUser(username, hashedPassword) {
     .catch(console.log);
 }
 
+//Gets a single user by id
 function getUser(userId) {
   return db
     .query("SELECT * FROM users WHERE id=($1)", [userId])
@@ -20,6 +21,21 @@ function getUser(userId) {
       return result.rows[0];
     });
 }
+
+//Gets a single user by username
+function getUserByName(username) {
+  return db
+    .query("SELECT * FROM users WHERE username=($1)", [username])
+    .then((result) => {
+      return result.rows[0];
+    });
+}
+//Gets all users
+function getEveryUser() {
+  return db.query("SELECT * from users").then((result) => {
+    return result.rows;
+  });
+}
 //INSERT INTO (username) VALUES (‘oli’) RETURNING id;
 
-module.exports = { addUser, getUser };
+module.exports = { addUser, getUser, getEveryUser, getUserByName };

@@ -26,8 +26,9 @@ function getQuestion(req, res, next) {
 }
 
 function postNewQuestion(req, res, next) {
+  const userId = req.params.id
   model
-    .post(req.body)
+    .post(req.body, userId)
     .then(() => {
         res.status(201).send(); //do we want to return anything?
     })
@@ -37,29 +38,47 @@ function postNewQuestion(req, res, next) {
 function updateQuestion(req, res, next) {
   const questionId = req.params.id;
   const question = req.body.question;
-  
-  if (questionId) {
-    model
-    .put(questionId, question)
-    .then(() => {
-      res.status(200).send(); //do we want to return anything?
-    })
-    .catch(next);
-  } 
-//   else {
-//       const error = new Error("Question doesn't exist");
-//       next(error);
-//   }
+  const userId = req.user.id;
+
+  model
+  .getUserIdByQuestionId(questionId)
+  .then(userIdArr => {
+    console.log(userIdArr)
+    if(userIdArr[0].user_id !== userId){
+      const error = new Error('Unauthorized!')
+      error.status = 401;
+      next(error)
+    } else {
+      model
+      .put(questionId, question)
+      .then(() => {
+        res.status(200).send(); //do we want to return anything?
+      })
+      .catch(next);
+    }
+  })
 }
 
 function deleteQuestion(req, res, next){
     const questionId = req.params.id;
+    const userId = req.user.id;
+
+  model
+  .getUserIdByQuestionId(questionId)
+  .then(userIdArr => {
+    if(userIdArr[0].user_id !== userId){
+      const error = new Error('Unauthorized!')
+      error.status = 401;
+      next(error)
+    } else {
     model
       .del(questionId)
       .then(() => {
           res.status(204).send();
       })
       .catch(next);
+    }
+  })
 }
 
 module.exports = { getAllQuestions, getQuestion, postNewQuestion, updateQuestion, deleteQuestion }

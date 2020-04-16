@@ -14,9 +14,14 @@ function get(id) {
     .then(getRows)
 }
 
-function post(newQuestionObj) {
+function getUserIdByQuestionId(questionId) {
+  return db.query('SELECT user_id FROM questions WHERE questions.id = ($1)', [questionId])
+  .then(getRows)
+}
+
+function post(newQuestionObj, userId) {
   const question = newQuestionObj.question; 
-    return db.query('INSERT INTO questions(question) VALUES ($1)', [question])
+    return db.query('INSERT INTO questions(user_id, question) VALUES (($1), ($2))', [userId, question])
 
 }
 
@@ -27,4 +32,4 @@ function del(id){
     return db.query('DELETE FROM questions WHERE questions.id = ($1)', [id])
 }
 
-module.exports = { getAll, post, del, put, get }
+module.exports = { getAll, post, del, put, get, getUserIdByQuestionId }

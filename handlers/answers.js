@@ -59,11 +59,25 @@ function updateAnswer(req, res, next) {
 
 function deleteAnswer(req, res, next) {
   const answerId = req.params.id;
-  model
-    .deleteAnswer(answerId)
-    .then(() => {
-      res.status(204).send();
-    })
+  const userId = req.user.id;
+  model.getAnswerByAnswerId(answerId)
+  .then(answer => {
+    console.log(answer)
+    return answer[0].user_id
+  })
+  .then(answerUserId => {
+    if(answerUserId !== userId){
+      const error = new Error('Unauthorized!');
+      error.status = 401;
+      next(error);
+    } else {
+      model
+        .deleteAnswer(answerId)
+        .then(() => {
+          res.status(204).send();
+        })
+    }
+  })
     .catch(next);
 }
 

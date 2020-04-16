@@ -9,4 +9,5 @@ function getAllQuestions(req, res, next) {
     .catch(next);
 }
 
+
 module.exports = { getAllQuestions }

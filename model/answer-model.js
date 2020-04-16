@@ -20,10 +20,12 @@ function createNewAnswer(user, question, answer) {
     .catch(console.log) 
 }
 
-function getAnswer(answerId) {
-    return db.query('SELECT answers FROM answers WHERE id=($1)', [`${answerId}`])
+
+//Selects specific answers based on the user
+function getAnswer(userId) {
+    return db.query('SELECT answers FROM answers WHERE user_id=($1)', [`${userId}`])
     .then(result => {
-        return result.rows[0]
+        return result.rows
     })
     .catch(console.log) 
 }

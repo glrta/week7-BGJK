@@ -1,8 +1,7 @@
-const answerModel = require("../model/answer-model");
-const questionModel = require("../model/question-model");
+const model = require("../model/answer-model");
 
 function getAnswers(req, res, next) {
-  answerModel
+  model
     .getAllAnswers()
     .then((answers) => {
       res.status(200).send(answers);
@@ -10,11 +9,21 @@ function getAnswers(req, res, next) {
     .catch(next);
 }
 
+function getUserAnswers (req, res, next) {
+    const userId = req.params.userId
+    model
+    .getAnswer(userId)
+    .then((results) => {
+        res.status(200).send(results)
+    })
+    .catch(next)
+}
+
 function createNewAnswer(req, res, next) {
   const answer = req.body.answer;
   const question = req.body.question;
   const user = req.params.id;
-  answerModel
+  model
     .createNewAnswer(user, question, answer)
     .then((data) => {
       res.status(201).send(data);
@@ -26,7 +35,7 @@ function updateAnswer(req, res, next) {
   const answerId = req.params.id;
   const newAnswer = req.body.answer;
 
-  answerModel
+  model
     .updateAnswer(answerId, newAnswer)
     .then((answer) => {
       res.status(200).send(answer);
@@ -36,7 +45,7 @@ function updateAnswer(req, res, next) {
 
 function deleteAnswer(req, res, next) {
   const answerId = req.params.id;
-  answerModel
+  model
     .deleteAnswer(answerId)
     .then(() => {
       res.status(204).send();
@@ -44,4 +53,4 @@ function deleteAnswer(req, res, next) {
     .catch(next);
 }
 
-module.exports = { getAnswers, createNewAnswer, updateAnswer, deleteAnswer };
+module.exports = { getAnswers, createNewAnswer, updateAnswer, deleteAnswer, getUserAnswers };

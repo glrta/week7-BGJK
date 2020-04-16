@@ -37,6 +37,6 @@ VALUES
 INSERT INTO answers
     (user_id, question_id, answers)
 VALUES
-    (1, 1, 'Surveillance Capitalism')
+    (1, 1, 'Surveillance Capitalism');
 
 COMMIT; 

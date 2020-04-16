@@ -15,6 +15,10 @@ server.use(express.json());  //so that express knows to use JSON
 
 //Routes for questions
 server.get("/questions", questions.getAllQuestions);
+server.get("/questions/:id", questions.getQuestion);
+server.post("/questions", questions.postNewQuestion);
+server.put("/questions/:id", questions.updateQuestion);
+server.delete("/questions/:id", questions.deleteQuestion);
 
 //Routes for answers
 server.get("/answers", answers.getAnswers);

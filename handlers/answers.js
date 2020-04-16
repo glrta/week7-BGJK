@@ -9,4 +9,18 @@ function getAnswers(req, res, next) {
     .catch(next)
 }
 
-module.exports = { getAnswers }
+
+function createNewAnswer(req, res, next) {
+    const answer = req.body.answer;
+    const question = req.body.question;
+    const authHeader = req.headers.authorization; //come back to this in the afternoon, requires authenticating the tokens
+
+    model
+    .createNewAnswer(1, question, answer)
+    .then(data => {
+        res.status(201).send(data)
+    })
+    .catch(next)
+}
+
+module.exports = { getAnswers, createNewAnswer }

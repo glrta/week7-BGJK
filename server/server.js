@@ -19,7 +19,6 @@ server.get("/questions", questions.getAllQuestions);
 //Routes for answers
 server.get("/answers", answers.getAnswers);
 
-
-
+server.post("/answers", answers.createNewAnswer);
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

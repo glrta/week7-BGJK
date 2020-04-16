@@ -10,7 +10,6 @@ function addUser(username, hashedPassword) {
       ]
     )
     .then((result) => result.rows[0].id)
-    .catch(console.log);
 }
 
 function getUser(userId) {
@@ -20,6 +19,6 @@ function getUser(userId) {
       return result.rows[0];
     });
 }
-//INSERT INTO (username) VALUES (‘oli’) RETURNING id;
+
 
 module.exports = { addUser, getUser };

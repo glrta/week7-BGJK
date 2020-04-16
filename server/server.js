@@ -9,6 +9,8 @@ const users = require("../handlers/users");
 const PORT = process.env.PORT || 3000;
 
 const server = express();
+server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+
 server.use(express.json()); //so that express knows to use JSON
 
 //Routes for questions
@@ -20,18 +22,15 @@ server.delete("/questions/:id", auth.verifyUser, questions.deleteQuestion);
 
 //Routes for answers
 server.get("/answers", answers.getAnswers);
-
 server.get("/answers/:userId", answers.getUserAnswers);
-
 server.post("/answers/:id",  auth.verifyUser, answers.createNewAnswer);
-
 server.put("/answers/:id",  auth.verifyUser, answers.updateAnswer);
-
 server.delete("/answers/:id",  auth.verifyUser, answers.deleteAnswer);
 
 //Routes for users
 server.post("/users", users.createUser);
 
+//Error handler
 server.use(error.errorHandler)
 
-server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+

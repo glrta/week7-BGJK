@@ -15,9 +15,10 @@ function verifyUser(req, res, next) {
     } else{
         const token = auth.replace("Bearer ", "");
         const user = jwt.verify(token, SECRET);
+        console.log(user);
            try{  
             model
-              .getUser(user.id)
+              .getUser(user.user)
               .then((user) => {
                   req.user = user
                   next()

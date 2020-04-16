@@ -1,7 +1,8 @@
-const model = require("../model/answer-model");
+const answerModel = require("../model/answer-model");
+const questionModel = require("../model/question-model");
 
 function getAnswers(req, res, next) {
-    model
+    answerModel
     .getAllAnswers()
     .then(answers => {
         res.status(200).send(answers)
@@ -13,12 +14,15 @@ function getAnswers(req, res, next) {
 function createNewAnswer(req, res, next) {
     const answer = req.body.answer;
     const question = req.body.question;
-    const authHeader = req.headers.authorization; //come back to this in the afternoon, requires authenticating the tokens
-
-    model
-    .createNewAnswer(1, question, answer)
-    .then(data => {
-        res.status(201).send(data)
+    const user = req.params.id;
+    questionModel
+    .getQuestionId(question)
+    .then((questionId) => {
+        answerModel 
+        .createNewAnswer(user, questionId, answer)
+        .then(data => {
+            res.status(201).send(data)
+        })
     })
     .catch(next)
 }
@@ -27,7 +31,7 @@ function updateAnswer(req, res, next) {
     const answerId = req.params.id; 
     const newAnswer = req.body.answer;
     
-        model.updateAnswer(answerId, newAnswer)
+        answerModel.updateAnswer(answerId, newAnswer)
         .then(answer => {
             res.status(200).send(answer)
         })
@@ -36,7 +40,7 @@ function updateAnswer(req, res, next) {
 
 function deleteAnswer(req, res, next) {
     const answerId = req.params.id;
-    model.deleteAnswer(answerId)
+    answerModel.deleteAnswer(answerId)
     .then( () => {
         res.status(204).send()
     })

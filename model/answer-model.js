@@ -15,6 +15,7 @@ function createNewAnswer(user, question, answer) {
     .then((result) => {
         return result.rows
     })
+    //Insert into answers question_id WHERE user_id =iuser_id
     .catch(console.log) 
 }
 

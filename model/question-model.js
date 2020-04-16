@@ -8,4 +8,11 @@ function getAllIcebreakers() {
     .catch(console.log);
 }
 
-module.exports = { getAllIcebreakers }
+function getQuestionId(question) {
+  return db.query('SELECT id FROM icebreakers WHERE question LIKE ($1)', [`${question}`])
+  .then((result) => {
+    return result.rows[0].id
+  })
+}
+
+module.exports = { getAllIcebreakers, getQuestionId }

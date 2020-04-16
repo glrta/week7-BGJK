@@ -19,7 +19,7 @@ server.get("/questions", questions.getAllQuestions);
 //Routes for answers
 server.get("/answers", answers.getAnswers);
 
-server.post("/answers", answers.createNewAnswer);
+server.post("/answers/:id", answers.createNewAnswer);
 
 server.put("/answers/:id", answers.updateAnswer);
 

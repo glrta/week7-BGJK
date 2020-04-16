@@ -21,7 +21,7 @@ API allows users to access a database of icebreaker questions and answers. Users
 
 ## How to set up the project
 ### Instructions to set up database
-- Start Posgres by typingon your terminal: `psql`
+- Start Posgres by typing on your terminal: `psql`
 - `CREATE USER myuser WITH PASSWORD 'mypassword'`
 - then `ALTER USER myuser WITH SUPERUSER`
 - then `CREATE DATABASE mydatabase WITH OWNER myuser`
@@ -58,7 +58,7 @@ API allows users to access a database of icebreaker questions and answers. Users
 
 ## What we learned
 
-- 418 http error code
+- 418 http status code: "I'm a teapot"
 - Arrays are still JSON
 - Utilising the unique keyword in our database schema to prevent multiple users with the same username
 
@@ -69,7 +69,7 @@ API allows users to access a database of icebreaker questions and answers. Users
 
 ## Contributors
 
-lizzy-j <lizzyhj@hotmail.com>
-Giovanna <to.gio@pm.me>
-CampbellDocherty <campbellsofitsidocherty@gmail.com>
-vatskan <vatskan@gmail.com>
+- [Lizzy-j](https://github.com/Lizzy-j)
+- [Giovanna](https://github.com/glrta)
+- [CampbellDocherty](https://github.com/CampbellDocherty)
+- [Vatskan](https://github.com/VatsKan)

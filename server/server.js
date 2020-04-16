@@ -21,4 +21,6 @@ server.get("/answers", answers.getAnswers);
 
 server.post("/answers", answers.createNewAnswer);
 
+server.put("/answers/:id", answers.updateAnswer);
+
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

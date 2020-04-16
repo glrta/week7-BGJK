@@ -23,4 +23,15 @@ function createNewAnswer(req, res, next) {
     .catch(next)
 }
 
-module.exports = { getAnswers, createNewAnswer }
+function updateAnswer(req, res, next) {
+    const answerId = req.params.id; 
+    const newAnswer = req.body.answer;
+    
+        model.updateAnswer(answerId, newAnswer)
+        .then(answer => {
+            res.status(200).send(answer)
+        })
+    .catch(next)
+}
+
+module.exports = { getAnswers, createNewAnswer, updateAnswer }

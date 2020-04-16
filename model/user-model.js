@@ -10,7 +10,6 @@ function addUser(username, hashedPassword) {
       ]
     )
     .then((result) => result.rows[0].id)
-    .catch(console.log);
 }
 
 //Gets a single user by id

@@ -8,7 +8,6 @@ function getAllAnswers() {
   return db
     .query("SELECT * FROM answers")
     .then(getRows)
-    .catch(console.log);
 }
 
 function createNewAnswer(user, question, answer) {
@@ -20,7 +19,6 @@ function createNewAnswer(user, question, answer) {
         [user, result.rows[0].id, answer]
       ).then(getRows);
     })
-    .catch(console.log);
 }
 
 //Selects specific answers based on the user
@@ -28,7 +26,11 @@ function getAnswer(userId) {
   return db
     .query("SELECT answers FROM answers WHERE user_id=($1)", [userId])
     .then(getRows)
-    .catch(console.log);
+}
+
+function getAnswerByAnswerId(answerId) {
+  return db.query("SELECT * FROM answers WHERE id=($1)", [answerId])
+  .then(getRows)
 }
 
 function updateAnswer(answerId, newAnswer) {
@@ -38,20 +40,19 @@ function updateAnswer(answerId, newAnswer) {
       answerId,
     ])
     .then(getRows)
-    .catch(console.log);
 }
 
 function deleteAnswer(answerId) {
   return db
     .query("DELETE FROM answers WHERE id=($1)", [answerId])
     .then(getRows)
-    .catch(console.log);
 }
 
 module.exports = {
   getAllAnswers,
   createNewAnswer,
   getAnswer,
+  getAnswerByAnswerId,
   updateAnswer,
   deleteAnswer,
 };

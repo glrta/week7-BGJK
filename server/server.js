@@ -9,29 +9,30 @@ const users = require("../handlers/users");
 const PORT = process.env.PORT || 3000;
 
 const server = express();
+server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+
 server.use(express.json()); //so that express knows to use JSON
 
 //Routes for questions
 server.get("/questions", questions.getAllQuestions);
 server.get("/questions/:id", questions.getQuestion);
-server.post("/questions", questions.postNewQuestion);
-server.put("/questions/:id", questions.updateQuestion);
-server.delete("/questions/:id", questions.deleteQuestion);
+server.post("/questions", auth.verifyUser, questions.postNewQuestion);
+server.put("/questions/:id", auth.verifyUser, questions.updateQuestion);
+server.delete("/questions/:id", auth.verifyUser, questions.deleteQuestion);
 
 //Routes for answers
 server.get("/answers", answers.getAnswers);
-
 server.get("/answers/:userId", answers.getUserAnswers);
-
-server.post("/answers/:id", answers.createNewAnswer);
-
-server.put("/answers/:id", answers.updateAnswer);
-
-server.delete("/answers/:id", answers.deleteAnswer);
+server.post("/answers/:id",  auth.verifyUser, answers.createNewAnswer);
+server.put("/answers/:id",  auth.verifyUser, answers.updateAnswer);
+server.delete("/answers/:id",  auth.verifyUser, answers.deleteAnswer);
 
 //Routes for users
 server.post("/users", users.createUser);
 server.post("/login", users.login);
 server.get("/users", users.getAllUsers);
 
-server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+//Error handler
+server.use(error.errorHandler)
+
+

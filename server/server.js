@@ -29,6 +29,8 @@ server.delete("/answers/:id",  auth.verifyUser, answers.deleteAnswer);
 
 //Routes for users
 server.post("/users", users.createUser);
+server.post("/login", users.login);
+server.get("/users", users.getAllUsers);
 
 //Error handler
 server.use(error.errorHandler)

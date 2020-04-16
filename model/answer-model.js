@@ -10,12 +10,13 @@ function getAllAnswers() {
 
 
 function createNewAnswer(user, question, answer) {
-    return db
-    .query('INSERT INTO answers (user_id, question_id, answers) VALUES (($1), ($2), ($3))', [`${user}`, `${question}`, `${answer}`])
+    return db.query('SELECT id FROM icebreakers WHERE question LIKE ($1)', [`${question}`])
     .then((result) => {
-        return result.rows
+        db.query('INSERT INTO answers (user_id, question_id, answers) VALUES (($1), ($2), ($3))', [`${user}`, `${result.rows[0].id}`, `${answer}`])
+        .then((result) => {
+            return result.rows
+        })
     })
-    //Insert into answers question_id WHERE user_id =iuser_id
     .catch(console.log) 
 }
 

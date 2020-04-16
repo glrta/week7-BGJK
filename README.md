@@ -2,7 +2,7 @@
 
 ## Project brief
 
-To build a REST API that delivers FAC19 icebreakers(?), inspired by the morning check-ins and afternoon checkouts. We thought it would be a great idea to buld something on this.
+To build a REST API that delivers FAC19 icebreakers(?), inspired by the morning check-ins and afternoon checkouts. We thought it would be a great idea to build something on this.
 
 ## What our API does
 

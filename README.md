@@ -4,11 +4,6 @@
 
 To build a REST API that delivers FAC19 icebreakers(?), inspired by the morning check-ins and afternoon checkouts. We thought it would be a great idea to buld something on this.
 
-## Running tests
-No tests as of Thursday 5pm
-
----
-
 ## What our API does
 
 API allows users to access a database of icebreaker questions and answers. Users will be able to add their own questions and answers.
@@ -39,6 +34,11 @@ API allows users to access a database of icebreaker questions and answers. Users
   PGUSER=myuser
   PGPASSWORD=mypassword
   ```
+
+---
+
+## Running tests
+No tests as of Thursday 5pm
 
 ---
 
@@ -89,6 +89,8 @@ API allows users to access a database of icebreaker questions and answers. Users
 
 ## What we struggled with
 - Uderstanding the concept of a REST API (project without a client side)
+- Deploy database to Heroku
+- Time to write tests
 
 ## Contributors
 

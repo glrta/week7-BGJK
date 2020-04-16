@@ -4,26 +4,25 @@ DROP TABLE IF EXISTS users, questions, answers;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    username VARCHAR(255),
-    passphrase VARCHAR(255),
-    token TEXT
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255),
 );
 
 CREATE TABLE questions(
     id SERIAL PRIMARY KEY,
     -- user_id INTEGER REFERENCES users(id),
-    question TEXT
+    question TEXT NOT NULL
 );
 
 CREATE TABLE answers(
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     question_id INTEGER REFERENCES questions(id),
-    answers TEXT
+    answers TEXT NOT NULL
 );
 
 INSERT INTO users
-    (username, passphrase)
+    (username, password)
 VALUES
     ('Tom', '$2a$10$3IAfxI7ekmnHqMv1T8a46O./avVNcq/YYk6SGkRwxEHsy9cQasuUy'),
     ('Chloe', '$2a$10$3IAfxI7ekmnHqMv1T8a46O./avVNcq/YYk6SGkRwxEHsy9cQasuUy'),

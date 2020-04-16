@@ -1,8 +1,8 @@
 # week7-BGJK
 
 ## Project brief
-To build a REST API that delivers FAC19 icebreakers(?)
 
+To build a REST API that delivers FAC19 icebreakers(?)
 
 ## Running tests
 
@@ -10,10 +10,11 @@ To build a REST API that delivers FAC19 icebreakers(?)
 
 ## What our API does
 
+### User stories
+
 ---
 
 ## How to use our API
-
 
 ---
 
@@ -37,13 +38,15 @@ To build a REST API that delivers FAC19 icebreakers(?)
 
 ## What we learned
 
+- 418 http error code
+- Array are still JSON
+
 ---
 
 ## What we struggled with
 
-
-
 ## Contributors
+
 lizzy-j <lizzyhj@hotmail.com>
 Giovanna <to.gio@pm.me>
 CampbellDocherty <campbellsofitsidocherty@gmail.com>

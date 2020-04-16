@@ -23,4 +23,6 @@ server.post("/answers", answers.createNewAnswer);
 
 server.put("/answers/:id", answers.updateAnswer);
 
+server.delete("/answers/:id", answers.deleteAnswer);
+
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

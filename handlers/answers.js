@@ -34,4 +34,13 @@ function updateAnswer(req, res, next) {
     .catch(next)
 }
 
-module.exports = { getAnswers, createNewAnswer, updateAnswer }
+function deleteAnswer(req, res, next) {
+    const answerId = req.params.id;
+    model.deleteAnswer(answerId)
+    .then( () => {
+        res.status(204).send()
+    })
+    .catch(next)
+}
+
+module.exports = { getAnswers, createNewAnswer, updateAnswer, deleteAnswer }

@@ -35,8 +35,19 @@ function updateAnswer(answerId, newAnswer) {
     .catch(console.log) 
 }
 
-module.exports = { getAllAnswers,
+function deleteAnswer(answerId) {
+    return db
+    .query('DELETE FROM answers WHERE id=($1)', [`${answerId}`])
+    .then(result => {
+        result.rows
+    })
+    .catch(console.log)
+}
+
+module.exports = { 
+getAllAnswers,
 createNewAnswer,
 getAnswer,
-updateAnswer
+updateAnswer,
+deleteAnswer
 }

@@ -24,7 +24,7 @@ function getQuestion(req, res, next) {
 }
 
 function postNewQuestion(req, res, next) {
-  const userId = req.params.id
+  const userId = req.user.id
   model
     .post(req.body, userId)
     .then((question) => {

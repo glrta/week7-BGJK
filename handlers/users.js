@@ -14,9 +14,6 @@ function createUser(req, res, next) {
     .then((hash) => {
       model
         .addUser(username, hash)
-        .then((userId) => {
-          return model.getUser(userId);
-        })
         .then((result) => {
           const token = jwt.sign({ user: result.id }, SECRET, {
             expiresIn: "1h",

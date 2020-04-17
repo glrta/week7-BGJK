@@ -34,12 +34,10 @@ function createNewAnswer(req, res, next) {
 function updateAnswer(req, res, next) {
   const answerId = req.params.id;
   const newAnswer = req.body.answer;
-  // console.log(req)
 
   const userId = req.user.id;
   model.getAnswerByAnswerId(answerId)
   .then(answer => {
-    console.log(answer)
     return answer[0].user_id
   })
   .then(answerUserId => {

@@ -23,9 +23,10 @@ function createUser(req, res, next) {
           });
           result.token = token;
           res.status(201).send(result);
-        });
+        })
+        .catch(next);
     })
-    .catch(next);
+    .catch(console.error)
 }
 
 function login(req, res, next) {

@@ -33,6 +33,7 @@ API allows users to access a database of icebreaker questions and answers. Users
   PGDATABASE=mydatabase
   PGUSER=myuser
   PGPASSWORD=mypassword
+  JWT_SECRET=a_string 
   ```
 
 ---
@@ -46,21 +47,52 @@ No tests as of Thursday 5pm
 
 ### Users
 - Method `POST` `/users`: allows user to sign up 
+  ```
+  {
+    "username":"your_username",
+    "password":"your_password"
+  }
+  ```
 - Method `POST` `/login`: allows user to login and creates token
+  ```
+  {
+    "username":"your_username",
+    "password":"your_password"
+  }
+  ```
 - Method `GET` `/users`: lists all users
 
 ### Questions
 - Method `GET` `/questions`: lists all questions in the database
 - Method `GET` `/question/:id`: gets specific question
 - Method `POST` `/questions`: allows logged in users to create new question
+  ```
+  {
+    "question":"your_new_question"
+  }
+  ```
 - Method `PUT` `/questions/:id`: allows logged in users to edit their questions
+   ```
+  {
+    "question":"your_edited_question"
+  }
 - Method `DEL` `/questions/:id`: allows logged in users to delete their questions
 
 ### Answers
 - Method `GET` `/answers`: lists all answers, with question ID and users ID
 - Method `GET` `/answers/:userId`: lists user's answers 
-- Method `POST` `/answers/:id`: allows logged in users to add answers
+- Method `POST` `/answers/:id`: allows logged in users to add answers (id referes to the question id)
+  ```
+  {
+    "answer": "your_new_answer"
+  }
+  ```
 - Method `PUT` `/answers/:id`: allows logged in users to edit their answers
+  ```
+  {
+    "answer": "your_edited_answer"
+  }
+  ```
 - Method `DEL` `/answers/:id`: allows logged in users to delete their answers
 
 ---

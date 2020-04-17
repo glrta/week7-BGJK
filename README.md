@@ -104,7 +104,7 @@ No tests as of Thursday 5pm
 - [x] Endpoints for creating, reading, updating & deleting resources
 - [x] Token-based authentication so only the owner of a resource can change it
 - [x] Correct headers and response metadata
-- [ ] Error-handling to make it easy to use the API to build something
+- [x] Error-handling to make it easy to use the API to build something
 - [ ] Tests for server routes and database access
 - [x] Not process user input as SQL commands
 - [x] Hidden environment variables (i.e. not on GitHub)

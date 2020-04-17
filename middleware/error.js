@@ -5,7 +5,8 @@ function errorHandler(error, req, res, next){
     const status = error.status || 500;
     const message = error.message || "Something went wrong";
     const name = error.name || 'Error'; 
-    res.status(status).send(`${name} : ${message}`);
+    const errorObj = {name, message}
+    res.status(status).send(errorObj);
 }
 
 

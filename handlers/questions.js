@@ -1,36 +1,34 @@
 const model = require("../model/question-model");
 
+//returns all questions from db 
 function getAllQuestions(req, res, next) {
   model
-    .getAll()
+    .getAllQuestions()
     .then((questions) => {
       res.status(200).send(questions);
     })
     .catch(next);
 }
 
+//returns question associated to question id.
 function getQuestion(req, res, next) {
   const id = req.params.id;
   if (id) {
     model
-    .get(id)
+    .getQuestionByQuestionId(id)
     .then((question) => {
       res.status(200).send(question)
     })
     .catch(next);
   } 
-//   else {
-//       const error = new Error("Question doesn't exist");
-//       next(error); 
-//   }
 }
 
 function postNewQuestion(req, res, next) {
   const userId = req.params.id
   model
     .post(req.body, userId)
-    .then(() => {
-        res.status(201).send(); //do we want to return anything?
+    .then((question) => {
+        res.status(201).send(question); 
     })
     .catch(next);
 }
@@ -40,6 +38,7 @@ function updateQuestion(req, res, next) {
   const question = req.body.question;
   const userId = req.user.id;
 
+  //refactor this to get rid of the first model query if possible
   model
   .getUserIdByQuestionId(questionId)
   .then(userIdArr => {
@@ -51,8 +50,8 @@ function updateQuestion(req, res, next) {
     } else {
       model
       .put(questionId, question)
-      .then(() => {
-        res.status(200).send(); //do we want to return anything?
+      .then((updated) => {
+        res.status(200).send(updated); 
       })
       .catch(next);
     }

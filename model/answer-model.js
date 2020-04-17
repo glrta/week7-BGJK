@@ -14,8 +14,8 @@ function createNewAnswer(user, question, answer) {
   return db
     .query("SELECT id FROM questions WHERE question LIKE ($1)", [question])
     .then((result) => {
-      db.query(
-        "INSERT INTO answers (user_id, question_id, answers) VALUES (($1), ($2), ($3))",
+      return db.query(
+        "INSERT INTO answers (user_id, question_id, answers) VALUES (($1), ($2), ($3)) RETURNING *",
         [user, result.rows[0].id, answer]
       ).then(getRows);
     })
@@ -35,7 +35,7 @@ function getAnswerByAnswerId(answerId) {
 
 function updateAnswer(answerId, newAnswer) {
   return db
-    .query("UPDATE answers SET answers=($1) WHERE id=($2)", [
+    .query("UPDATE answers SET answers=($1) WHERE id=($2) RETURNING *", [
       newAnswer,
       answerId,
     ])

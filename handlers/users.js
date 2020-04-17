@@ -14,18 +14,16 @@ function createUser(req, res, next) {
     .then((hash) => {
       model
         .addUser(username, hash)
-        .then((userId) => {
-          return model.getUser(userId);
-        })
         .then((result) => {
           const token = jwt.sign({ user: result.id }, SECRET, {
             expiresIn: "1h",
           });
           result.token = token;
           res.status(201).send(result);
-        });
+        })
+        .catch(next);
     })
-    .catch(next);
+    .catch(console.error)
 }
 
 function login(req, res, next) {

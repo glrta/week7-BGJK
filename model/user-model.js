@@ -11,7 +11,7 @@ function resultRows(result){
 function addUser(username, hashedPassword) {
   return db
     .query(
-      "INSERT INTO users(username, password) VALUES (($1), ($2)) RETURNING *",
+      "INSERT INTO users(username, password) VALUES (($1), ($2)) RETURNING id, username",
       [
         username,
         hashedPassword
@@ -23,20 +23,20 @@ function addUser(username, hashedPassword) {
 //Gets a single user by id
 function getUser(userId) {
   return db
-    .query("SELECT * FROM users WHERE id=($1)", [userId])
+    .query("SELECT id, username FROM users WHERE id=($1)", [userId])
     .then(resultRowsZero);
 }
 
 //Gets a single user by username
 function getUserByName(username) {
   return db
-    .query("SELECT * FROM users WHERE username=($1)", [username])
+    .query("SELECT id, username FROM users WHERE username=($1)", [username])
     .then(resultRowsZero);
 }
 
 //Gets all users
 function getEveryUser() {
-  return db.query("SELECT * from users").then(resultRows);
+  return db.query("SELECT id, username FROM users").then(resultRows);
 }
 
 module.exports = { addUser, getUser, getEveryUser, getUserByName };

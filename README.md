@@ -4,6 +4,10 @@ At [Founders and Coders](https://www.foundersandcoders.com/about/) coding bootca
 
 __Week 7 topic__: REST API
 
+See [week 7 schedule](https://founders-and-coders.gitbook.io/coursebook/week-7/schedule).
+
+---
+
 
 # week7-BGJK
 
